@@ -42,7 +42,7 @@ import binascii
 
 def isalpha(char):
     """CircuitPython implementation of .isalpha()"""
-    if not (char >= 'a' and char <= 'z' or char >= 'A' and char <= 'Z'):
+    if not (char >= 'a' char <= 'z' or char >= 'A' char <= 'Z'):
         return False
     return True
 
