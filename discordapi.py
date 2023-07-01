@@ -41,24 +41,29 @@ import adafruit_requests
 import binascii
 
 def isalpha(char):
+    """CircuitPython implementation of .isalpha()"""
     if not (char >= 'a' and char <= 'z' or char >= 'A' and char <= 'Z'):
         return False
     return True
 
 def isdigit(char):
+    """CircuitPython implementation of .isdigit()"""
     char_ascii = ord(char)
     if not (char_ascii >= 48 and char_ascii <= 57):
         return False
     return True
 
 def isalnum(char):
+    """CircuitPython implementation of .isalnum()"""
     return isalpha(char) or isdigit(char)
 
 def is_valid_codepoint(char):
-    code_point = ord(char)  # Get the Unicode code point of the character
+    """Checks if the input character is a code point"""
+    code_point = ord(char)
     return 0 <= code_point <= 0x10FFFF
 
 def url_encoder(string):
+    """Encodes a string in URL format"""
     encoded_url = ""
     for char in string:
         if isalnum(char) or char in ['-', '_', '.', '~']:
@@ -336,4 +341,3 @@ class RESTAPI:
             return jresponse
         else:
             print(f'Failed to get gateway bot with status code {response.status_code}.')
-
