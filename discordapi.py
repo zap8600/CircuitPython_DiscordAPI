@@ -93,7 +93,9 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to get channel with status code {response.status_code}.')
+            print(
+              f'Failed to get channel with status code {response.status_code}.'
+            )
     
     def modify_channel(self, channel_id, channel_name):
         url = f'{self.base_url}/channels/{channel_id}'
@@ -105,7 +107,9 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to modify channel with status code {response.status_code}.')
+            print(
+              f'Failed to modify channel with status code {response.status_code}.'
+            )
     
     def delete_close_channel(self, channel_id):
         url = f'{self.base_url}/channels/{channel_id}'
@@ -114,7 +118,9 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to get delete/close channel with status code {response.status_code}.')
+            print(
+              f'Failed to get delete/close channel with status code {response.status_code}.'
+            )
     
     def get_channel_messages(self, channel_id):
         url = f'{self.base_url}/channels/{channel_id}/messages'
@@ -123,7 +129,9 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to get channel messages with status code {response.status_code}.')
+            print(
+              f'Failed to get channel messages with status code {response.status_code}.'
+            )
     
     def get_channel_message(self, channel_id, message_id):
         url = f'{self.base_url}/channels/{channel_id}/messages/{message_id}'
@@ -132,7 +140,9 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to get channel message with status code {response.status_code}.')
+            print(
+              f'Failed to get channel message with status code {response.status_code}.'
+            )
     
     def create_message(self, channel_id, content):
         url = f'{self.base_url}/channels/{channel_id}/messages'
@@ -144,7 +154,9 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to create message with status code {response.status_code}.')
+            print(
+              f'Failed to create message with status code {response.status_code}.'
+            )
     
     def crosspost_message(self, channel_id, message_id):
         url = f'{self.base_url}/channels/{channel_id}/messages/{message_id}/crosspost'
@@ -153,7 +165,9 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to crosspost message with status code {response.status_code}.')
+            print(
+              f'Failed to crosspost message with status code {response.status_code}.'
+            )
     
     # TO-DO: Create working URL encoder and implement it into emoji functions
     
@@ -164,7 +178,9 @@ class RESTAPI:
         if response.status_code == 204:
             print("Success.")
         else:
-            print(f'Failed to create reaction with status code {response.status_code}.')
+            print(
+              f'Failed to create reaction with status code {response.status_code}.'
+            )
     
     def delete_own_reaction(self, channel_id, message_id, emoji):
         encoded_emoji = url_encoder(emoji)
@@ -173,7 +189,9 @@ class RESTAPI:
         if response.status_code == 204:
             print("Success.")
         else:
-            print(f'Failed to delete own reaction with status code {response.status_code}.')
+            print(
+              f'Failed to delete own reaction with status code {response.status_code}.'
+            )
     
     def delete_user_reaction(self, channel_id, message_id, emoji, user_id):
         encoded_emoji = url_encoder(emoji)
@@ -182,7 +200,9 @@ class RESTAPI:
         if response.status_code == 204:
             print("Success.")
         else:
-            print(f'Failed to delete user reaction with status code {response.status_code}.')
+            print(
+              f'Failed to delete user reaction with status code {response.status_code}.'
+            )
     
     def edit_message(self, channel_id, message_id, content):
         url = f'{self.base_url}/channels/{channel_id}/messages/{message_id}'
@@ -194,7 +214,9 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to edit message with status code {response.status_code}.')
+            print(
+              f'Failed to edit message with status code {response.status_code}.'
+            )
     
     def bulk_delete_messages(self, channel_id, message_ids):
         url = f'{self.base_url}/channels/{channel_id}/messages/bulk-delete'
@@ -205,7 +227,9 @@ class RESTAPI:
         if response.status_code == 204:
             print("Success.")
         else:
-            print(f'Failed to bulk delete messages with status code {response.status_code}.')
+            print(
+              f'Failed to bulk delete messages with status code {response.status_code}.'
+            )
     
     def edit_channel_permissions(self, channel_id, overwrite_id, id_type, allow="0", deny="0"):
         url = f'{self.base_url}/channels/{channel_id}/permissions/{overwrite_id}'
@@ -218,7 +242,9 @@ class RESTAPI:
         if response.status_code == 204:
             print("Success.")
         else:
-            print(f'Failed to edit channel permissions with status code {response.status_code}.')
+            print(
+              f'Failed to edit channel permissions with status code {response.status_code}.'
+            )
     
     def get_channel_invites(self, channel_id):
         url = f'{self.base_url}/channels/{channel_id}/invites'
@@ -227,7 +253,9 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to get channel invites with status code {response.status_code}.')
+            print(
+              f'Failed to get channel invites with status code {response.status_code}.'
+            )
     
     def create_channel_invite(self, channel_id):
         url = f'{self.base_url}/channels/{channel_id}/invites'
@@ -236,7 +264,9 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to create channel invite with status code {response.status_code}.')
+            print(
+              f'Failed to create channel invite with status code {response.status_code}.'
+            )
     
     def delete_channel_permission(self, channel_id, overwrite_id):
         url = f'{self.base_url}/channels/{channel_id}/permissions/{overwrite_id}'
@@ -244,7 +274,9 @@ class RESTAPI:
         if response.status_code == 204:
             print("Success.")
         else:
-            print(f'Failed to delete channel permission with status code {response.status_code}.')
+            print(
+              f'Failed to delete channel permission with status code {response.status_code}.'
+            )
     
     # Guild
     
@@ -264,7 +296,9 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to create guild with status code {response.status_code}.')
+            print(
+              f'Failed to create guild with status code {response.status_code}.'
+            )
     
     def get_guild_channels(self, guild_id):
         url = f'{self.base_url}/guilds/{guild_id}/channels'
@@ -273,7 +307,9 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to get guild channels with status code {response.status_code}.')
+            print(
+              f'Failed to get guild channels with status code {response.status_code}.'
+            )
     
     def create_guild_channel(self, guild_id, channel_name):
         url = f'{self.base_url}/guilds/{guild_id}/channels'
@@ -282,7 +318,9 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to create guild channel with status code {response.status_code}.')
+            print(
+              f'Failed to create guild channel with status code {response.status_code}.'
+            )
     
     def list_guild_members(self, guild_id):
         url = f'{self.base_url}/guilds/{guild_id}/members'
@@ -291,7 +329,9 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to list guild members with status code {response.status_code}.')
+            print(
+              f'Failed to list guild members with status code {response.status_code}.'
+            )
     
     def get_guild_roles(self, guild_id):
         url = f'{self.base_url}/guilds/{guild_id}/roles'
@@ -300,7 +340,9 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to list guild members with status code {response.status_code}.')
+            print(
+              f'Failed to list guild members with status code {response.status_code}.'
+            )
     
     # User
     
@@ -311,7 +353,9 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to get current user with status code {response.status_code}.')
+            print(
+              f'Failed to get current user with status code {response.status_code}.'
+            )
     
     def get_current_user_guilds(self):
         url = f'{self.base_url}/users/@me/guilds'
@@ -320,7 +364,9 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to get current user guilds with status code {response.status_code}.')
+            print(
+              f'Failed to get current user guilds with status code {response.status_code}.'
+            )
     
     # Gateway
     
@@ -331,7 +377,9 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to get gateway with status code {response.status_code}.')
+            print(
+              f'Failed to get gateway with status code {response.status_code}.'
+            )
     
     def get_gateway_bot(self):
         url = f'{self.base_url}/gateway/bot'
@@ -340,4 +388,6 @@ class RESTAPI:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
         else:
-            print(f'Failed to get gateway bot with status code {response.status_code}.')
+            print(
+              f'Failed to get gateway bot with status code {response.status_code}.'
+            )
