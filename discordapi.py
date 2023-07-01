@@ -97,10 +97,9 @@ class RESTAPI:
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
-        else:
-            print(
-              f'Failed to get channel with status code {response.status_code}.'
-            )
+        print(
+            f'Failed to get channel with status code {response.status_code}.'
+        )
     
     def modify_channel(self, channel_id, channel_name):
         """Update a channel's settings.
