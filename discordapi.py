@@ -73,6 +73,7 @@ def url_encoder(string):
     return encoded_url
 
 class RESTAPI:
+    """Class for Discord's REST API"""
     def __init__(self, base_url, auth_type, token, pool, ssl=None):
         self.base_url = base_url
         self.auth_type = auth_type
@@ -87,7 +88,11 @@ class RESTAPI:
     # Channel
     
     def get_channel(self, channel_id):
-        url = f'{self.base_url}/channels/{channel_id}'
+        """Get a channel by ID.
+        Returns a channel object."""
+        url = (
+            f'{self.base_url}/channels/{channel_id}'
+        )
         response = self.requests.get(url, headers=self.headers)
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
@@ -98,7 +103,12 @@ class RESTAPI:
             )
     
     def modify_channel(self, channel_id, channel_name):
-        url = f'{self.base_url}/channels/{channel_id}'
+        """Update a channel's settings.
+        Returns a channel on success, and a 400 BAD REQUEST on invalid parameters.
+        All JSON parameters are optional."""
+        url = (
+            f'{self.base_url}/channels/{channel_id}'
+        )
         payload = {
             'name': channel_name
         }
@@ -112,7 +122,11 @@ class RESTAPI:
             )
     
     def delete_close_channel(self, channel_id):
-        url = f'{self.base_url}/channels/{channel_id}'
+        """Delete a channel, or close a private message.
+        Returns a channel object on success."""
+        url = (
+            f'{self.base_url}/channels/{channel_id}'
+        )
         response = self.requests.delete(url, headers=self.headers)
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
@@ -123,7 +137,11 @@ class RESTAPI:
             )
     
     def get_channel_messages(self, channel_id):
-        url = f'{self.base_url}/channels/{channel_id}/messages'
+        """Retrieves the messages in a channel.
+        Returns an array of message objects on success."""
+        url = (
+            f'{self.base_url}/channels/{channel_id}/messages'
+        )
         response = self.requests.get(url, headers=self.headers)
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
@@ -169,11 +187,11 @@ class RESTAPI:
               f'Failed to crosspost message with status code {response.status_code}.'
             )
     
-    # TO-DO: Create working URL encoder and implement it into emoji functions
-    
     def create_reaction(self, channel_id, message_id, emoji):
         encoded_emoji = url_encoder(emoji)
-        url = f'{self.base_url}/channels/{channel_id}/messages/{message_id}/reactions/{encoded_emoji}/@me'
+        url = (
+            f'{self.base_url}/channels/{channel_id}/messages/{message_id}/reactions/{encoded_emoji}/@me'
+        )
         response = self.requests.put(url, headers=self.headers)
         if response.status_code == 204:
             print("Success.")
