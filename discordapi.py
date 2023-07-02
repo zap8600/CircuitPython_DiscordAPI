@@ -190,7 +190,6 @@ class RESTAPI:
         print(
           f'Failed to crosspost message with status code {response.status_code}.'
         )
-        return None
     
     def create_reaction(self, channel_id, message_id, emoji):
         """Create a reaction for the message.
