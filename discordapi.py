@@ -100,6 +100,7 @@ class RESTAPI:
         print(
             f'Failed to get channel with status code {response.status_code}.'
         )
+        return None
     
     def modify_channel(self, channel_id, channel_name):
         """Update a channel's settings.
