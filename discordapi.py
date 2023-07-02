@@ -217,7 +217,6 @@ class RESTAPI:
         print(
           f'Failed to delete own reaction with status code {response.status_code}.'
         )
-        return None
     
     def delete_user_reaction(self, channel_id, message_id, emoji, user_id):
         """Deletes another user's reaction.
@@ -230,7 +229,6 @@ class RESTAPI:
         print(
           f'Failed to delete user reaction with status code {response.status_code}.'
         )
-        return None
     
     def edit_message(self, channel_id, message_id, content):
         """Edit a previously sent message.
@@ -261,7 +259,6 @@ class RESTAPI:
         print(
           f'Failed to bulk delete messages with status code {response.status_code}.'
         )
-        return None
     
     def edit_channel_permissions(self, channel_id, overwrite_id, id_type, allow="0", deny="0"):
         """Edit the channel permission overwrites for a user or role in a channel.
@@ -278,7 +275,6 @@ class RESTAPI:
         print(
           f'Failed to edit channel permissions with status code {response.status_code}.'
         )
-        return None
     
     def get_channel_invites(self, channel_id):
         """Returns a list of invite objects (with invite metadata) for the channel."""
@@ -315,7 +311,6 @@ class RESTAPI:
         print(
           f'Failed to delete channel permission with status code {response.status_code}.'
         )
-        return None
     
     # Guild
     
