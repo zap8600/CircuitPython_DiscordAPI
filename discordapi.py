@@ -118,6 +118,7 @@ class RESTAPI:
         print(
           f'Failed to modify channel with status code {response.status_code}.'
         )
+        return None
     
     def delete_close_channel(self, channel_id):
         """Delete a channel, or close a private message.
@@ -132,6 +133,7 @@ class RESTAPI:
         print(
           f'Failed to get delete/close channel with status code {response.status_code}.'
         )
+        return None
     
     def get_channel_messages(self, channel_id):
         """Retrieves the messages in a channel.
@@ -146,6 +148,7 @@ class RESTAPI:
         print(
           f'Failed to get channel messages with status code {response.status_code}.'
         )
+        return None
     
     def get_channel_message(self, channel_id, message_id):
         """Retrieves a specific message in the channel.
@@ -158,6 +161,7 @@ class RESTAPI:
         print(
           f'Failed to get channel message with status code {response.status_code}.'
         )
+        return None
     
     def create_message(self, channel_id, content):
         """Post a message to a guild text or DM channel.
@@ -173,6 +177,7 @@ class RESTAPI:
         print(
           f'Failed to create message with status code {response.status_code}.'
         )
+        return None
     
     def crosspost_message(self, channel_id, message_id):
         """Crosspost a message in an Announcement Channel to following channels.
