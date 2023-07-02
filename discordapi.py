@@ -153,7 +153,9 @@ class RESTAPI:
     def get_channel_message(self, channel_id, message_id):
         """Retrieves a specific message in the channel.
         Returns a message object on success."""
-        url = f'{self.base_url}/channels/{channel_id}/messages/{message_id}'
+        url = (
+            f'{self.base_url}/channels/{channel_id}/messages/{message_id}'
+        )
         response = self.requests.get(url, headers=self.headers)
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
@@ -166,7 +168,9 @@ class RESTAPI:
     def create_message(self, channel_id, content):
         """Post a message to a guild text or DM channel.
         Returns a message object."""
-        url = f'{self.base_url}/channels/{channel_id}/messages'
+        url = (
+            f'{self.base_url}/channels/{channel_id}/messages'
+        )
         payload = {
             'content': content
         }
@@ -182,7 +186,9 @@ class RESTAPI:
     def crosspost_message(self, channel_id, message_id):
         """Crosspost a message in an Announcement Channel to following channels.
         Returns a message object."""
-        url = f'{self.base_url}/channels/{channel_id}/messages/{message_id}/crosspost'
+        url = (
+            f'{self.base_url}/channels/{channel_id}/messages/{message_id}/crosspost'
+        )
         response = self.requests.post(url, headers=self.headers)
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
@@ -210,7 +216,9 @@ class RESTAPI:
         """Delete a reaction the current user has made for the message.
         Returns a 204 empty response on success."""
         encoded_emoji = url_encoder(emoji)
-        url = f'{self.base_url}/channels/{channel_id}/messages/{message_id}/reactions/{encoded_emoji}/@me'
+        url = (
+            f'{self.base_url}/channels/{channel_id}/messages/{message_id}/reactions/{encoded_emoji}/@me'
+        )
         response = self.requests.delete(url, headers=self.headers)
         if response.status_code == 204:
             print("Success.")
@@ -222,7 +230,9 @@ class RESTAPI:
         """Deletes another user's reaction.
         Returns a 204 empty response on success."""
         encoded_emoji = url_encoder(emoji)
-        url = f'{self.base_url}/channels/{channel_id}/messages/{message_id}/reactions/{encoded_emoji}/{user_id}'
+        url = (
+            f'{self.base_url}/channels/{channel_id}/messages/{message_id}/reactions/{encoded_emoji}/{user_id}'
+        )
         response = self.requests.delete(url, headers=self.headers)
         if response.status_code == 204:
             print("Success.")
@@ -233,7 +243,9 @@ class RESTAPI:
     def edit_message(self, channel_id, message_id, content):
         """Edit a previously sent message.
         Returns a message object."""
-        url = f'{self.base_url}/channels/{channel_id}/messages/{message_id}'
+        url = (
+            f'{self.base_url}/channels/{channel_id}/messages/{message_id}'
+        )
         payload = {
             'content': content
         }
@@ -249,7 +261,9 @@ class RESTAPI:
     def bulk_delete_messages(self, channel_id, message_ids):
         """Delete multiple messages in a single request.
         Returns a 204 empty response on success."""
-        url = f'{self.base_url}/channels/{channel_id}/messages/bulk-delete'
+        url = (
+            f'{self.base_url}/channels/{channel_id}/messages/bulk-delete'
+        )
         payload = {
             'messages': message_ids
         }
@@ -263,7 +277,9 @@ class RESTAPI:
     def edit_channel_permissions(self, channel_id, overwrite_id, id_type, allow="0", deny="0"):
         """Edit the channel permission overwrites for a user or role in a channel.
         Returns a 204 empty response on success."""
-        url = f'{self.base_url}/channels/{channel_id}/permissions/{overwrite_id}'
+        url = (
+            f'{self.base_url}/channels/{channel_id}/permissions/{overwrite_id}'
+        )
         payload = {
             'allow': f'{allow}',
             'deny': f'{deny}',
@@ -278,7 +294,9 @@ class RESTAPI:
     
     def get_channel_invites(self, channel_id):
         """Returns a list of invite objects (with invite metadata) for the channel."""
-        url = f'{self.base_url}/channels/{channel_id}/invites'
+        url = (
+            f'{self.base_url}/channels/{channel_id}/invites'
+        )
         response = self.requests.get(url, headers=self.headers)
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
@@ -291,7 +309,9 @@ class RESTAPI:
     def create_channel_invite(self, channel_id):
         """Create a new invite object for the channel.
         Returns an invite object."""
-        url = f'{self.base_url}/channels/{channel_id}/invites'
+        url = (
+            f'{self.base_url}/channels/{channel_id}/invites'
+        )
         response = self.requests.post(url, headers=self.headers, data={})
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
@@ -304,7 +324,9 @@ class RESTAPI:
     def delete_channel_permission(self, channel_id, overwrite_id):
         """Delete a channel permission overwrite for a user or role in a channel.
         Returns a 204 empty response on success."""
-        url = f'{self.base_url}/channels/{channel_id}/permissions/{overwrite_id}'
+        url = (
+            f'{self.base_url}/channels/{channel_id}/permissions/{overwrite_id}'
+        )
         response = self.requests.delete(url, headers=self.headers)
         if response.status_code == 204:
             print("Success.")
@@ -317,7 +339,9 @@ class RESTAPI:
     def create_guild(self, guild_name, channel_name):
         """Create a new guild.
         Returns a guild object on success."""
-        url = f'{self.base_url}/guilds'
+        url = (
+            f'{self.base_url}/guilds'
+        )
         payload = {
             'name': guild_name,
             'channels': [
@@ -338,7 +362,9 @@ class RESTAPI:
     
     def get_guild_channels(self, guild_id):
         """Returns a list of guild channel objects."""
-        url = f'{self.base_url}/guilds/{guild_id}/channels'
+        url = (
+            f'{self.base_url}/guilds/{guild_id}/channels'
+        )
         response = self.requests.get(url, headers=self.headers)
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
@@ -351,7 +377,9 @@ class RESTAPI:
     def create_guild_channel(self, guild_id, channel_name):
         """Create a new channel object for the guild.
         Returns the new channel object on success."""
-        url = f'{self.base_url}/guilds/{guild_id}/channels'
+        url = (
+            f'{self.base_url}/guilds/{guild_id}/channels'
+        )
         response = self.requests.get(url, headers=self.headers)
         if response.status_code == 201:
             jresponse = json.loads(response.content.decode("utf-8"))
@@ -363,7 +391,9 @@ class RESTAPI:
     
     def list_guild_members(self, guild_id):
         """Returns a list of guild member objects that are members of the guild."""
-        url = f'{self.base_url}/guilds/{guild_id}/members'
+        url = (
+            f'{self.base_url}/guilds/{guild_id}/members'
+        )
         response = self.requests.get(url, headers=self.headers)
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
@@ -375,7 +405,9 @@ class RESTAPI:
     
     def get_guild_roles(self, guild_id):
         """Returns a list of role objects for the guild."""
-        url = f'{self.base_url}/guilds/{guild_id}/roles'
+        url = (
+            f'{self.base_url}/guilds/{guild_id}/roles'
+        )
         response = self.requests.get(url, headers=self.headers)
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
@@ -389,7 +421,9 @@ class RESTAPI:
     
     def get_current_user(self):
         """Returns the user object of the requester's account."""
-        url = f'{self.base_url}/users/@me'
+        url = (
+            f'{self.base_url}/users/@me'
+        )
         response = self.requests.get(url, headers=self.headers)
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
@@ -401,7 +435,9 @@ class RESTAPI:
     
     def get_current_user_guilds(self):
         """Returns a list of partial guild objects the current user is a member of."""
-        url = f'{self.base_url}/users/@me/guilds'
+        url = (
+            f'{self.base_url}/users/@me/guilds'
+        )
         response = self.requests.get(url, headers=self.headers)
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
@@ -415,7 +451,9 @@ class RESTAPI:
     
     def get_gateway(self):
         """Returns an object with a valid WSS URL which the app can use when Connecting to the Gateway."""
-        url = f'{self.base_url}/gateway'
+        url = (
+            f'{self.base_url}/gateway'
+        )
         response = self.requests.get(url, headers=self.headers)
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
@@ -428,7 +466,9 @@ class RESTAPI:
     def get_gateway_bot(self):
         """Returns an object based on the information in Get Gateway,
         plus additional metadata that can help during the operation of large or sharded bots."""
-        url = f'{self.base_url}/gateway/bot'
+        url = (
+            f'{self.base_url}/gateway/bot'
+        )
         response = self.requests.get(url, headers=self.headers)
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
