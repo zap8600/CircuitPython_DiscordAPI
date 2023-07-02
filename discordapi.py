@@ -205,7 +205,6 @@ class RESTAPI:
         print(
           f'Failed to create reaction with status code {response.status_code}.'
         )
-        return None
     
     def delete_own_reaction(self, channel_id, message_id, emoji):
         """Delete a reaction the current user has made for the message.
