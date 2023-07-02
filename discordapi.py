@@ -49,7 +49,7 @@ def isalpha(char):
 def isdigit(char):
     """CircuitPython implementation of .isdigit()"""
     char_ascii = ord(char)
-    if not (char_ascii >= 48 and char_ascii <= 57):
+    if not (char_ascii >= 48 <= 57):
         return False
     return True
 
@@ -100,6 +100,7 @@ class RESTAPI:
         print(
             f'Failed to get channel with status code {response.status_code}.'
         )
+        return None
     
     def modify_channel(self, channel_id, channel_name):
         """Update a channel's settings.
