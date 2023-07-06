@@ -204,7 +204,7 @@ class RESTAPI:
         encoded_emoji = url_encoder(emoji)
         url = (
             f'{self.base_url}/channels/{channel_id}/messages/{message_id}/reactions/{encoded_emoji}/@me'
-        )
+        ) # pylint: disable=line-too-long
         response = self.requests.put(url, headers=self.headers)
         if response.status_code == 204:
             print("Success.")
@@ -218,7 +218,7 @@ class RESTAPI:
         encoded_emoji = url_encoder(emoji)
         url = (
             f'{self.base_url}/channels/{channel_id}/messages/{message_id}/reactions/{encoded_emoji}/@me'
-        )
+        ) # pylint: disable=line-too-long
         response = self.requests.delete(url, headers=self.headers)
         if response.status_code == 204:
             print("Success.")
@@ -232,7 +232,7 @@ class RESTAPI:
         encoded_emoji = url_encoder(emoji)
         url = (
             f'{self.base_url}/channels/{channel_id}/messages/{message_id}/reactions/{encoded_emoji}/{user_id}'
-        )
+        ) # pylint: disable=line-too-long
         response = self.requests.delete(url, headers=self.headers)
         if response.status_code == 204:
             print("Success.")
@@ -450,7 +450,7 @@ class RESTAPI:
     # Gateway
     
     def get_gateway(self):
-        """Returns an object with a valid WSS URL which the app can use when Connecting to the Gateway."""
+        """Returns an object with a valid WSS URL."""
         url = (
             f'{self.base_url}/gateway'
         )
