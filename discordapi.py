@@ -85,8 +85,6 @@ class RESTAPI:
             'Content-Length': '0'
         }
     
-    # fmt: off
-    
     # Channel
     
     def get_channel(self, channel_id):
@@ -479,5 +477,3 @@ class RESTAPI:
           f'Failed to get gateway bot with status code {response.status_code}.'
         )
         return None
-    
-    # fmt: on
