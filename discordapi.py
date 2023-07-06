@@ -72,7 +72,7 @@ def url_encoder(string):
             encoded_url += '%' + binascii.hexlify(char.encode(), '%').decode().upper()
     return encoded_url
 
-class RESTAPI:
+class RESTAPI: # pylint: disable=too-many-public-methods
     """Class for Discord's REST API"""
     def __init__(self, base_url, auth_type, token, pool, ssl=None): # pylint: disable=too-many-arguments
         self.base_url = base_url
@@ -380,7 +380,10 @@ class RESTAPI:
         url = (
             f'{self.base_url}/guilds/{guild_id}/channels'
         )
-        response = self.requests.get(url, headers=self.headers)
+        payload = {
+            'name': channel_name
+        }
+        response = self.requests.post(url, headers=self.headers, data=json.dumps(payload))
         if response.status_code == 201:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
