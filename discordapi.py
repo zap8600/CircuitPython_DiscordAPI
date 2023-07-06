@@ -37,8 +37,8 @@ __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/zap8600/CircuitPython_DiscordAPI.git"
 
 import json
-import adafruit_requests
 import binascii
+import adafruit_requests
 
 def isalpha(char):
     """CircuitPython implementation of .isalpha()"""
@@ -74,7 +74,7 @@ def url_encoder(string):
 
 class RESTAPI:
     """Class for Discord's REST API"""
-    def __init__(self, base_url, auth_type, token, pool, ssl=None):
+    def __init__(self, base_url, auth_type, token, pool, ssl=None): # pylint: disable=too-many-arguments
         self.base_url = base_url
         self.auth_type = auth_type
         self.token = token
@@ -84,6 +84,8 @@ class RESTAPI:
             'Content-Type': 'application/json',
             'Content-Length': '0'
         }
+    
+    # fmt: off
     
     # Channel
     
@@ -274,7 +276,7 @@ class RESTAPI:
           f'Failed to bulk delete messages with status code {response.status_code}.'
         )
     
-    def edit_channel_permissions(self, channel_id, overwrite_id, id_type, allow="0", deny="0"):
+    def edit_channel_permissions(self, channel_id, overwrite_id, id_type, allow="0", deny="0"): # pylint: disable=too-many-arguments
         """Edit the channel permission overwrites for a user or role in a channel.
         Returns a 204 empty response on success."""
         url = (
@@ -477,3 +479,5 @@ class RESTAPI:
           f'Failed to get gateway bot with status code {response.status_code}.'
         )
         return None
+    
+    # fmt: on
