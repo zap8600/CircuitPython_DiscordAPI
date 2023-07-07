@@ -308,7 +308,7 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
             f"Failed to follow announcement channel with status code {response.status_code}."
         )
         return None
-    
+
     def trigger_typing_indicator(self, channel_id):
         """Post a typing indicator for the specified channel.
         Returns a 204 empty response on success."""
