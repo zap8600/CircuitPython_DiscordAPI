@@ -298,7 +298,7 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
         Returns a followed channel object."""
         url = f"{self.base_url}/channels/{channel_id}/followers"
         payload = {"webhook_channel_id": webhook_channel_id}
-        response = self.requests.post(url, headers=self.headers, data=data=json.dumps(payload))
+        response = self.requests.post(url, headers=self.headers, data=json.dumps(payload))
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
