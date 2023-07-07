@@ -292,17 +292,21 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
         print(
             f"Failed to delete channel permission with status code {response.status_code}."
         )
-    
+
     def follow_announcement_channel(self, channel_id, webhook_channel_id):
         """Follow an Announcement Channel to send messages to a target channel.
         Returns a followed channel object."""
         url = f"{self.base_url}/channels/{channel_id}/followers"
         payload = {"webhook_channel_id": webhook_channel_id}
-        response = self.requests.post(url, headers=self.headers, data=json.dumps(payload))
+        response = self.requests.post(
+            url, headers=self.headers, data=json.dumps(payload)
+        )
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
-        print(f"Failed to follow announcement channel with status code {response.status_code}.")
+        print(
+            f"Failed to follow announcement channel with status code {response.status_code}."
+        )
         return None
 
     # Guild
