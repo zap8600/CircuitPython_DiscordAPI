@@ -308,6 +308,17 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
             f"Failed to follow announcement channel with status code {response.status_code}."
         )
         return None
+    
+    def trigger_typing_indicator(self, channel_id):
+        """Post a typing indicator for the specified channel.
+        Returns a 204 empty response on success."""
+        url = f"{self.base_url}/channels/{channel_id}/typing"
+        response = self.requests.post(url, headers=self.headers)
+        if response.status_code == 204:
+            print("Success.")
+        print(
+            f"Failed to trigger typing indicator with status code {response.status_code}."
+        )
 
     # Guild
 
