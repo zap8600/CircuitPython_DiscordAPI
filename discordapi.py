@@ -316,9 +316,10 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
         response = self.requests.post(url, headers=self.headers)
         if response.status_code == 204:
             print("Success.")
-        print(
-            f"Failed to trigger typing indicator with status code {response.status_code}."
-        )
+        else:
+            print(
+                f"Failed to trigger typing indicator with status code {response.status_code}."
+            )
 
     # Guild
 
