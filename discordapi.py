@@ -82,17 +82,40 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
     """Class for Discord's REST API"""
 
     def __init__(
-        self, base_url, auth_type, token, pool, ssl=None
+        self, base_url, token, pool, ssl=None, auth_type='Bot', user=False
     ):  # pylint: disable=too-many-arguments
         self.base_url = base_url
         self.auth_type = auth_type
         self.token = token
         self.requests = adafruit_requests.Session(pool, ssl)
-        self.headers = {
-            "Authorization": f"{auth_type} {token}",
-            "Content-Type": "application/json",
-            "Content-Length": "0",
-        }
+        if user == False:
+            self.headers = {
+                "Authorization": f"{auth_type} {token}",
+                "Content-Type": "application/json",
+                "Content-Length": "0",
+            }
+        else:
+            self.headers = {
+                "Accept": "*/*",
+                "Accept-Encoding": "gzip, deflate, br",
+                "Accept-Language": 'en-US,en;q=0.9',
+                "Authorization": token,
+                "Cache-Control": "no-cache",
+                "Content-Type": "application/json",
+                "Pragma": "no-cache",
+                "Referer": "https://discord.com/channels/@me",
+                "Sec-Ch-Ua": '" Not A;Brand";v="99", "Chromium";v="103", "Google Chrome";v="103"',
+                "Sec-Ch-Ua-Mobile": '?0',
+                "Sec-Ch-Ua-Platform": '"Chrome OS"',
+                "Sec-Fetch-Dest": "empty",
+                "Sec-Fetch-Mode": "cors",
+                "Sec-Fetch-Site": "same-origin",
+                "User-Agent": "Mozilla/5.0 (X11; CrOS x86_64 14816.131.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36", # pylint: disable=line-too-long
+                "X-Debug-Options": "bugReporterEnabled",
+                "X-Discord-Locale": "en-US",
+                "Origin": "https://discord.com"
+            }
+        # print(self.headers)
 
     # Channel
 
