@@ -88,7 +88,7 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
         self.auth_type = auth_type
         self.token = token
         self.requests = adafruit_requests.Session(pool, ssl)
-        if user == False:
+        if user is False:
             self.headers = {
                 "Authorization": f"{auth_type} {token}",
                 "Content-Type": "application/json",
