@@ -342,7 +342,7 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
             print(
                 f"Failed to trigger typing indicator with status code {response.status_code}."
             )
-    
+
     def get_pinned_messages(self, channel_id):
         """Returns all pinned messages in the channel as an array of message objects."""
         url = f"{self.base_url}/channels/{channel_id}/pins"
@@ -352,7 +352,7 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
             return jresponse
         print(f"Failed to get pinned messages with status code {response.status_code}.")
         return None
-    
+
     def pin_message(self, channel_id, message_id):
         """Pin a message in a channel."""
         url = f"{self.base_url}/channels/{channel_id}/pins/{message_id}"
@@ -424,24 +424,34 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
             return jresponse
         print(f"Failed to get guild roles with status code {response.status_code}.")
         return None
-    
+
     # todo: use the servers @everyone perms as the default instead of a fixed default
-    
+
     def create_guild_role(
-        self, guild_id, name="new role", permissions="137411140505153", color=0, hoist=False, image_data=None, unicode_emoji=None, mentionable=False # pylint: disable=line-too-long
-    ): # pylint: disable=too-many-arguments
+        self,
+        guild_id,
+        name="new role",
+        permissions="137411140505153",
+        color=0,
+        hoist=False,
+        image_data=None,
+        unicode_emoji=None,
+        mentionable=False,  # pylint: disable=line-too-long
+    ):  # pylint: disable=too-many-arguments
         """Create a new role for the guild."""
         url = f"{self.base_url}/guilds/{guild_id}/roles"
         payload = {
-            'name': name,
-            'permissions': permissions,
-            'color': color,
-            'hoist': hoist,
-            'image_data': image_data,
-            'unicode_emoji': unicode_emoji,
-            'mentionable': mentionable
+            "name": name,
+            "permissions": permissions,
+            "color": color,
+            "hoist": hoist,
+            "image_data": image_data,
+            "unicode_emoji": unicode_emoji,
+            "mentionable": mentionable,
         }
-        response = self.requests.post(url, headers=self.headers, data=json.dumps(payload))
+        response = self.requests.post(
+            url, headers=self.headers, data=json.dumps(payload)
+        )
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
