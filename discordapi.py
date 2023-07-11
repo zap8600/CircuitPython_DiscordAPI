@@ -225,7 +225,9 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
         if response.status_code == 204:
             print("Success.")
         else:
-            print(f"Failed to delete own reaction with status code {response.status_code}.")
+            print(
+                f"Failed to delete own reaction with status code {response.status_code}."
+            )
 
     def delete_user_reaction(self, channel_id, message_id, emoji, user_id):
         """Deletes another user's reaction.
@@ -366,10 +368,8 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
         if response.status_code == 204:
             print("Success.")
         else:
-            print(
-                f"Failed to pin message with status code {response.status_code}."
-            )
-    
+            print(f"Failed to pin message with status code {response.status_code}.")
+
     def unpin_message(self, channel_id, message_id):
         """Unpin a message in a channel."""
         url = f"{self.base_url}/channels/{channel_id}/pins/{message_id}"
@@ -377,25 +377,22 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
         if response.status_code == 204:
             print("Success.")
         else:
-            print(
-                f"Failed to unpin message with status code {response.status_code}."
-            )
-    
+            print(f"Failed to unpin message with status code {response.status_code}.")
+
     def group_dm_add_recipient(self, channel_id, user_id, access_token, nick):
         """Adds a recipient to a Group DM using their access token."""
         url = f"{self.base_url}/channels/{channel_id}/recipients/{user_id}"
-        payload = {
-            'access_token': access_token,
-            'nick': nick
-        }
-        response = self.requests.put(url, headers=self.headers, data=json.dumps(payload))
+        payload = {"access_token": access_token, "nick": nick}
+        response = self.requests.put(
+            url, headers=self.headers, data=json.dumps(payload)
+        )
         if response.status_code == 204:
             print("Success.")
         else:
             print(
                 f"Failed to add group dm recipient with status code {response.status_code}."
             )
-    
+
     def group_dm_remove_recipient(self, channel_id, user_id):
         """Unpin a message in a channel."""
         url = f"{self.base_url}/channels/{channel_id}/recipients/{user_id}"
