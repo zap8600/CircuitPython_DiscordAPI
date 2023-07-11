@@ -213,7 +213,8 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
         response = self.requests.put(url, headers=self.headers)
         if response.status_code == 204:
             print("Success.")
-        print(f"Failed to create reaction with status code {response.status_code}.")
+        else:
+            print(f"Failed to create reaction with status code {response.status_code}.")
 
     def delete_own_reaction(self, channel_id, message_id, emoji):
         """Delete a reaction the current user has made for the message.
@@ -223,7 +224,8 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
         response = self.requests.delete(url, headers=self.headers)
         if response.status_code == 204:
             print("Success.")
-        print(f"Failed to delete own reaction with status code {response.status_code}.")
+        else:
+            print(f"Failed to delete own reaction with status code {response.status_code}.")
 
     def delete_user_reaction(self, channel_id, message_id, emoji, user_id):
         """Deletes another user's reaction.
@@ -233,9 +235,10 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
         response = self.requests.delete(url, headers=self.headers)
         if response.status_code == 204:
             print("Success.")
-        print(
-            f"Failed to delete user reaction with status code {response.status_code}."
-        )
+        else:
+            print(
+                f"Failed to delete user reaction with status code {response.status_code}."
+            )
 
     def edit_message(self, channel_id, message_id, content):
         """Edit a previously sent message.
@@ -261,9 +264,10 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
         )
         if response.status_code == 204:
             print("Success.")
-        print(
-            f"Failed to bulk delete messages with status code {response.status_code}."
-        )
+        else:
+            print(
+                f"Failed to bulk delete messages with status code {response.status_code}."
+            )
 
     def edit_channel_permissions(
         self, channel_id, overwrite_id, id_type, allow="0", deny="0"
@@ -277,9 +281,10 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
         )
         if response.status_code == 204:
             print("Success.")
-        print(
-            f"Failed to edit channel permissions with status code {response.status_code}."
-        )
+        else:
+            print(
+                f"Failed to edit channel permissions with status code {response.status_code}."
+            )
 
     def get_channel_invites(self, channel_id):
         """Returns a list of invite objects (with invite metadata) for the channel."""
@@ -311,9 +316,10 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
         response = self.requests.delete(url, headers=self.headers)
         if response.status_code == 204:
             print("Success.")
-        print(
-            f"Failed to delete channel permission with status code {response.status_code}."
-        )
+        else:
+            print(
+                f"Failed to delete channel permission with status code {response.status_code}."
+            )
 
     def follow_announcement_channel(self, channel_id, webhook_channel_id):
         """Follow an Announcement Channel to send messages to a target channel.
@@ -357,11 +363,49 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
         """Pin a message in a channel."""
         url = f"{self.base_url}/channels/{channel_id}/pins/{message_id}"
         response = self.requests.put(url, headers=self.headers)
-        if response.status_code == 200:
-            jresponse = json.loads(response.content.decode("utf-8"))
-            return jresponse
-        print(f"Failed to pin message with status code {response.status_code}.")
-        return None
+        if response.status_code == 204:
+            print("Success.")
+        else:
+            print(
+                f"Failed to pin message with status code {response.status_code}."
+            )
+    
+    def unpin_message(self, channel_id, message_id):
+        """Unpin a message in a channel."""
+        url = f"{self.base_url}/channels/{channel_id}/pins/{message_id}"
+        response = self.requests.delete(url, headers=self.headers)
+        if response.status_code == 204:
+            print("Success.")
+        else:
+            print(
+                f"Failed to unpin message with status code {response.status_code}."
+            )
+    
+    def group_dm_add_recipient(self, channel_id, user_id, access_token, nick):
+        """Adds a recipient to a Group DM using their access token."""
+        url = f"{self.base_url}/channels/{channel_id}/recipients/{user_id}"
+        payload = {
+            'access_token': access_token,
+            'nick': nick
+        }
+        response = self.requests.put(url, headers=self.headers, data=json.dumps(payload))
+        if response.status_code == 204:
+            print("Success.")
+        else:
+            print(
+                f"Failed to add group dm recipient with status code {response.status_code}."
+            )
+    
+    def group_dm_remove_recipient(self, channel_id, user_id):
+        """Unpin a message in a channel."""
+        url = f"{self.base_url}/channels/{channel_id}/recipients/{user_id}"
+        response = self.requests.delete(url, headers=self.headers)
+        if response.status_code == 204:
+            print("Success.")
+        else:
+            print(
+                f"Failed to remove grouo dm recipient with status code {response.status_code}."
+            )
 
     # Guild
 
