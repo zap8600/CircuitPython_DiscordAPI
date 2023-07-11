@@ -425,7 +425,7 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
         print(f"Failed to get guild roles with status code {response.status_code}.")
         return None
     
-    # todo: update create guild role to get the permissions of the guilds @everyone role instead of using a fixed value as the default
+    # todo: use the servers @everyone perms as the default instead of a fixed default
     
     def create_guild_role(
         self, guild_id, name="new role", permissions="137411140505153", color=0, hoist=False, image_data=None, unicode_emoji=None, mentionable=False # pylint: disable=line-too-long
@@ -441,7 +441,7 @@ class RESTAPI:  # pylint: disable=too-many-public-methods
             'unicode_emoji': unicode_emoji,
             'mentionable': mentionable
         }
-        response = self.requests.post(url, headers=self.headers)
+        response = self.requests.post(url, headers=self.headers, data=json.dumps(payload))
         if response.status_code == 200:
             jresponse = json.loads(response.content.decode("utf-8"))
             return jresponse
